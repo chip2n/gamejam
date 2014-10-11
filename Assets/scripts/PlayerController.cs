@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour {
 	void RegisterDamage(float damage) {
 		health -= damage;
 		if (health <= 0.0f) {
-			Vector3 deathPos = new Vector3(transform.position.x, transform.position.y, -3);
+			Vector3 deathPos = new Vector3(transform.position.x, transform.position.y, 0);
 			Instantiate (deathPrefab, deathPos, transform.rotation);
 			Destroy (gameObject);
 		}
