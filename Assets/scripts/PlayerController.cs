@@ -33,35 +33,8 @@ public class PlayerController : MonoBehaviour {
 		}
 		animator.SetBool ("grounded", grounded);
 
-		animator.SetBool ("falling", rigidbody2D.velocity.y < 0);
+		animator.SetBool ("falling", rigidbody2D.velocity.y < -0.1f);
 		animator.SetFloat ("vSpeed", rigidbody2D.velocity.y);
-
-		/*
-		if (controllable) {
-			float val = Input.GetAxis ("Horizontal1");
-			transform.position += new Vector3 (val * Time.deltaTime * speed, 0, 0);
-			Vector3 rotation = transform.rotation.eulerAngles;
-			if (val < 0) {
-				rotation.y = 180;
-			} else if (val > 0) {
-				rotation.y = 0;
-			}
-			transform.eulerAngles = rotation;
-
-			animator.SetBool ("moving", Math.Abs (val) > 0.5);
-
-			float jump = Input.GetAxis ("Jump1");
-			if (jump > 0 && grounded && (Time.time - jumpTime) > 1.0f) {
-				Jump ();
-			}
-
-			float punch = Input.GetAxis ("Fire1");
-			if(punch > 0 && grounded) {
-				Punch();
-			}
-		}
-		*/
-
 	}
 
 	public void ProcessHorizontal(float val) {
@@ -129,13 +102,14 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			hitbox.GetComponent<Hitbox>().launchVector = new Vector3(1,1,0);
 		}
+
+		hitbox.GetComponent<Hitbox>().owner = playerNumber;
 		//hitbox.transform.parent = transform;
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
-		//if (coll.gameObject.tag == "Hitbox") {
 		Hitbox hitbox = coll.gameObject.GetComponent<Hitbox> ();
-		if (hitbox) {
+		if (hitbox && hitbox.owner != playerNumber) {
 			Debug.Log ("Hit a hitbox.");
 			RegisterDamage(hitbox.damage);
 			Vector3 launchDir = hitbox.launchVector;
@@ -149,8 +123,7 @@ public class PlayerController : MonoBehaviour {
 	void RegisterDamage(float damage) {
 		health -= damage;
 		if (health <= 0.0f) {
-			Vector3 deathPos = new Vector3(transform.position.x, transform.position.y, 0);
-			Instantiate (deathPrefab, deathPos, transform.rotation);
+			Instantiate (deathPrefab, transform.position, transform.rotation);
 			Destroy (gameObject);
 		}
 	}

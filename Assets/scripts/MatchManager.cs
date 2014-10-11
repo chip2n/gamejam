@@ -1,14 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 [Serializable]
 public class MatchManager : MonoBehaviour {
 	public GameObject playerPrefab;
 	public GameObject healthBarPrefab;
+	public GameObject matchEndPrefab;
+
 	public int nrOfPlayers = 2;
-	public List<Vector3> spawnPositions;
 	public List<PlayerController> players;
+
+	bool matchActive = false;
+
+
+	List<Vector3> spawnPositions;
 
 	// Use this for initialization
 	void Start () {
@@ -19,13 +27,48 @@ public class MatchManager : MonoBehaviour {
 			spawnPositions.Add(spawnPoint.transform.position);
 		}
 
+		spawnPositions = spawnPositions.OrderBy (o=>o.x).ToList();
+
 		SpawnPlayers ();
 		CreateHealthBars ();
+		StartMatch ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (matchActive) {
+			List<PlayerController> playersAlive = new List<PlayerController>();
+			foreach (PlayerController player in players) {
+				if (player.health > 0) {
+					playersAlive.Add (player);
+				}
+			}
+
+			if(playersAlive.Count == 1) {
+				EndMatch ();
+				GameObject matchEndObject = Instantiate (matchEndPrefab) as GameObject;
+				matchEndObject.GetComponentInChildren<Text> ().text = "Game Over!\nPlayer " + playersAlive[0].playerNumber + " wins!";
+			} else if(playersAlive.Count == 0) {
+				EndMatch ();
+				GameObject matchEndObject = Instantiate (matchEndPrefab) as GameObject;
+				matchEndObject.GetComponentInChildren<Text> ().text = "Game Over!\nIt's a draw!";
+			}
+
+
+		}
+	}
+
+	void StartMatch() {
+		matchActive = true;
+	}
+
+	void EndMatch() {
+		matchActive = false;
+		Invoke ("QuitApplication", 2);
+	}
+
+	void QuitApplication() {
+		Application.Quit ();
 	}
 
 	void SpawnPlayers() {

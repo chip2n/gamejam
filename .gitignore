@@ -18,5 +18,6 @@ sysinfo.txt
 
 #Build files
 *.exe
+*.apk
 *_Data/
 UnityPlayer_Symbols.pdb

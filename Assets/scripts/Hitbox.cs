@@ -6,6 +6,7 @@ using System;
 public class Hitbox : MonoBehaviour {
 	public float damage = 5.0f;
 	public Vector3 launchVector;
+	public int owner = 0;
 
 	// Use this for initialization
 	void Start () {
