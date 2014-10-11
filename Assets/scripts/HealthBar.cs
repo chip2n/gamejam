@@ -10,7 +10,8 @@ public class HealthBar : MonoBehaviour {
 	Transform canvas;
 	public PlayerController player;
 	public float lastHealth = 0.0f;
-
+	public string position = "left";
+	
 	// Use this for initialization
 	void Start () {
 		canvas = transform.Find("Canvas");
@@ -40,7 +41,18 @@ public class HealthBar : MonoBehaviour {
 		for (int i = 0; i < nrOfFullHearts; i++) {
 			GameObject fullHeart = Instantiate(fullHeartPrefab) as GameObject;
 			fullHeart.transform.parent = canvas;
-			fullHeart.transform.Translate(new Vector3(i*10,0,0));
+			if(position == "right") {
+				fullHeart.transform.position = new Vector3(-32, 16, 0);
+				fullHeart.transform.Translate(new Vector3(i*-10,0,0));
+				((RectTransform)fullHeart.transform).anchorMin = new Vector2(1, 0);
+				((RectTransform)fullHeart.transform).anchorMax = new Vector2(1, 0);
+			} else {
+				fullHeart.transform.position = new Vector3(32, 16, 0);
+				fullHeart.transform.Translate(new Vector3(i*10,0,0));
+				((RectTransform)fullHeart.transform).anchorMin = new Vector2(0, 0);
+				((RectTransform)fullHeart.transform).anchorMax = new Vector2(0, 0);
+			}
+
 		}
 		for (int i = 0; i < nrOfHalfHearts; i++) {
 			GameObject halfHeart = Instantiate(halfHeartPrefab) as GameObject;

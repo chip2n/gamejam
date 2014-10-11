@@ -79,6 +79,7 @@ MonoBehaviour:
   heartHealth: 10
   player: {fileID: 0}
   lastHealth: 0
+  position: left
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
