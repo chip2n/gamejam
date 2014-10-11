@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject explosionPrefab;
 	public float health = 100.0f;
 	public GameObject deathPrefab;
+	public int playerNumber = 1;
 
 	public float jumpTime;
 

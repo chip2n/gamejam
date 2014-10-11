@@ -5,7 +5,6 @@ using System;
 [Serializable]
 public class PlayerInput : MonoBehaviour {
 	PlayerController player;
-	public int playerNumber = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -27,17 +26,17 @@ public class PlayerInput : MonoBehaviour {
 	}
 
 	float GetHorizontal() {
-		string axisName = "Horizontal" + playerNumber;
+		string axisName = "Horizontal" + player.playerNumber;
 		return Input.GetAxis (axisName);
 	}
 
 	float GetJump() {
-		string axisName = "Jump" + playerNumber;
+		string axisName = "Jump" + player.playerNumber;
 		return Input.GetAxis (axisName);
 	}
 
 	float GetFire() {
-		string axisName = "Fire" + playerNumber;
+		string axisName = "Fire" + player.playerNumber;
 		return Input.GetAxis (axisName);
 	}
 }
