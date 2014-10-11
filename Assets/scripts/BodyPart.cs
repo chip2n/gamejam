@@ -13,16 +13,17 @@ public class BodyPart : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter2D(Collider2D coll) {
+	public void OnTriggerEnter2D(Collider2D coll) {
 		//if (coll.gameObject.tag == "Hitbox") {
 		Hitbox hitbox = coll.gameObject.GetComponent<Hitbox> ();
 		if (hitbox) {
-			Debug.Log ("Hit a hitbox.");
-			Vector3 launchDir = hitbox.launchVector;
-			Debug.Log (launchDir);
-			rigidbody2D.AddForce (launchDir * 10000);
+			Launch (hitbox.GetLaunchVector(coll));
 		} else {
 			Debug.Log ("NOPE");
 		}
+	}
+
+	public void Launch(Vector3 dir) {
+		rigidbody2D.AddForce (dir * 10000);
 	}
 }

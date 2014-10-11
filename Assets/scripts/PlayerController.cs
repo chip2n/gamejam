@@ -16,8 +16,12 @@ public class PlayerController : MonoBehaviour {
 	public float health = 100.0f;
 	public GameObject deathPrefab;
 	public int playerNumber = 1;
+	public GameObject grenadePrefab;
+
+	bool grenade = false;
 
 	public float jumpTime;
+	public int currentWeapon = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -61,7 +65,17 @@ public class PlayerController : MonoBehaviour {
 	
 	public void ProcessFire(float val) {
 		if (val > 0 && grounded) {
-			Punch ();
+			if(currentWeapon == 0) {
+				Punch ();
+			} else {
+				ThrowGrenade();
+			}
+		}
+	}
+
+	public void ProcessWeaponSwitch(float val) {
+		if (val > 0) {
+			SwitchWeapons ();
 		}
 	}
 	
@@ -75,6 +89,24 @@ public class PlayerController : MonoBehaviour {
 	void Punch() {
 		controllable = false;
 		animator.SetBool("punching", true);
+	}
+
+	void ThrowGrenade() {
+		if (!grenade) {
+			grenade = true;
+			animator.SetBool ("grenade", grenade);
+			Vector3 grenadeSpawnPoint = new Vector3 (transform.position.x, transform.position.y, -2);
+			GameObject grenadeObject = Instantiate (grenadePrefab, grenadeSpawnPoint, Quaternion.identity) as GameObject;
+			grenadeObject.rigidbody2D.AddForce (new Vector2 (0.5f, 0.5f) * 1000);
+			int torque = UnityEngine.Random.Range(-100, 100);
+			grenadeObject.rigidbody2D.AddTorque(torque);
+			//animator.SetBool("punching", true);
+		}
+	}
+
+	void SwitchWeapons() {
+		currentWeapon = (currentWeapon + 1) % 2;
+		Debug.Log("Switched weapons to " + currentWeapon);
 	}
 
 	void OnFinishedAttack() {
@@ -107,24 +139,41 @@ public class PlayerController : MonoBehaviour {
 		//hitbox.transform.parent = transform;
 	}
 
+	void OnGrenadeThrowFinished() {
+		grenade = false;
+		animator.SetBool ("grenade", grenade);
+	}
+
 	void OnTriggerEnter2D(Collider2D coll) {
 		Hitbox hitbox = coll.gameObject.GetComponent<Hitbox> ();
 		if (hitbox && hitbox.owner != playerNumber) {
 			Debug.Log ("Hit a hitbox.");
-			RegisterDamage(hitbox.damage);
-			Vector3 launchDir = hitbox.launchVector;
-			Debug.Log (launchDir);
-			rigidbody2D.AddForce (launchDir * 50000);
+			bool dead = RegisterDamage(hitbox.damage);
+			if(dead) {
+				GameObject bodyObj = Instantiate (deathPrefab, transform.position, transform.rotation) as GameObject;
+				foreach(Transform t in bodyObj.transform) {
+					BodyPart bp = t.GetComponent<BodyPart>();
+					if(bp) {
+						bp.Launch(bp.transform.position - coll.bounds.center);
+					}
+				}
+				Destroy (gameObject);
+			} else {
+				Vector3 launchDir = hitbox.GetLaunchVector(coll);
+				Debug.Log ("LAUNCH VECTOR: " + launchDir);
+				rigidbody2D.AddForce (launchDir * 50000);
+			}
 		} else {
 			Debug.Log ("NOPE");
 		}
 	}
 
-	void RegisterDamage(float damage) {
+	bool RegisterDamage(float damage) {
 		health -= damage;
 		if (health <= 0.0f) {
-			Instantiate (deathPrefab, transform.position, transform.rotation);
-			Destroy (gameObject);
+			return true;
 		}
+
+		return false;
 	}
 }

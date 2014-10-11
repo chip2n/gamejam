@@ -22,6 +22,9 @@ public class PlayerInput : MonoBehaviour {
 			
 			float val3 = GetFire();
 			player.ProcessFire(val3);
+
+			float val4 = GetWeaponSwitch();
+			player.ProcessWeaponSwitch(val4);
 		}
 	}
 
@@ -37,6 +40,11 @@ public class PlayerInput : MonoBehaviour {
 
 	float GetFire() {
 		string axisName = "Fire" + player.playerNumber;
+		return Input.GetAxis (axisName);
+	}
+
+	float GetWeaponSwitch() {
+		string axisName = "WeaponSwitch" + player.playerNumber;
 		return Input.GetAxis (axisName);
 	}
 }
