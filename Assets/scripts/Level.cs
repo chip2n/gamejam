@@ -37,6 +37,7 @@ public class Level : MonoBehaviour {
 
 	void CreateSprites() {
 		for(int i = 0; i < tiles.Count; i++) {
+			//Debug.Log (tiles[i]);
 			int tileIndex = tiles[i] - 1;
 			if(tileIndex > -1) {
 				int x = i % 32;
@@ -45,16 +46,28 @@ public class Level : MonoBehaviour {
 				test.transform.parent = this.transform;
 				Tile tile = test.GetComponent<Tile>();
 				tile.setPosition(x, y);
-				if(tileIndex == 1) {
+				if(tileIndex == 3) {
 					tile.collider2D.enabled = false;
 				} else {
 					test.layer = 9;
 				}
 				SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
-				sr.sprite = tileSprites[tileIndex];
+				sr.sprite = GetSpriteByTileId(tiles[i]);
+				Debug.Log ("SPRITE NAME: " + tileSprites[tileIndex].name);
 			}
 		}
 	}
+
+	Sprite GetSpriteByTileId(int id) {
+		foreach (Sprite sp in tileSprites) {
+			if(sp.name == id.ToString()) {
+				return sp;
+			}
+		}
+
+		return null;
+	}
+
 
 	void LoadSprites() {
 		/*
@@ -71,6 +84,7 @@ public class Level : MonoBehaviour {
 		foreach (Sprite s in sprites) {
 			tileSprites.Add(s);
 		}
+		tileSprites = tileSprites.OrderBy (o => o.name).ToList();
 
 	}
 }

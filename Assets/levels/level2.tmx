@@ -2,20 +2,10 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="tilemap" tilewidth="16" tileheight="16">
   <image source="../Resources/sprites/tilemap.png" width="128" height="128"/>
-  <tile id="0">
-   <properties>
-    <property name="name" value="grass"/>
-   </properties>
-  </tile>
-  <tile id="1">
-   <properties>
-    <property name="name" value="sky"/>
-   </properties>
-  </tile>
  </tileset>
  <layer name="Tile Layer 1" width="32" height="32">
   <data encoding="base64" compression="zlib">
-   eJztzjsKACAMRMHE+x/aXvwUooJMMc0WeSkRUQAAAPheXmrkoDXaT/Xb1uy31Z2enf4LFQE0B8c=
+   eJztzyEOACAMBMECNcD//0s1uYQKDGHFyL20bmYOAAAAAHhCCVVoF7YyGz0MYSba/Wa1o347NTfaHyw5vxGz
   </data>
  </layer>
 </map>
