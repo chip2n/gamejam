@@ -4,7 +4,6 @@ using System;
 
 [Serializable]
 public class Explosion : MonoBehaviour {
-	public GameObject hitboxPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +16,6 @@ public class Explosion : MonoBehaviour {
 	}
 
 	void AnimationDone() {
-		Debug.Log ("IM HERE!");
 		Destroy(gameObject);
 	}
 }

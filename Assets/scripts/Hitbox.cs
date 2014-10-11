@@ -4,6 +4,9 @@ using System;
 
 [Serializable]
 public class Hitbox : MonoBehaviour {
+	public float damage = 5.0f;
+	public Vector3 launchVector;
+
 	// Use this for initialization
 	void Start () {
 		

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
 using SimpleJSON;
 using System.IO;
@@ -16,7 +15,9 @@ public class Level : MonoBehaviour {
 
 	private int height;
 	private int width;
-
+	void Awake() {
+		LoadSprites();
+	}
 	void Start() {
 		string json_string = File.ReadAllText(levelSource);
 		JSONNode node = JSON.Parse (json_string);
@@ -31,7 +32,6 @@ public class Level : MonoBehaviour {
 			tiles.Add(data[i].AsInt);
 		}
 
-		LoadSprites();
 		CreateSprites();
 	}
 
@@ -57,6 +57,7 @@ public class Level : MonoBehaviour {
 	}
 
 	void LoadSprites() {
+		/*
 		string spriteSheet = AssetDatabase.GetAssetPath(tileMap);
 		Sprite[] sprites = AssetDatabase.LoadAllAssetsAtPath( spriteSheet )
 			.OfType<Sprite>().ToArray();
@@ -64,5 +65,12 @@ public class Level : MonoBehaviour {
 		foreach (Sprite s in sprites) {
 			tileSprites.Add(s);
 		}
+		*/
+
+		Sprite[] sprites = Resources.LoadAll<Sprite> (@"sprites/tilemap");
+		foreach (Sprite s in sprites) {
+			tileSprites.Add(s);
+		}
+
 	}
 }
