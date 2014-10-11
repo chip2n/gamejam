@@ -25,12 +25,19 @@ TextureImporter:
     21300040: tilemap_22
     21300042: tilemap_23
     21300044: x_heart_empty
-    21300046: tilemap_29
-    21300048: tilemap_30
-    21300050: tilemap_31
+    21300046: x_torso
+    21300048: x_right_arm
+    21300050: x_right_leg
     21300052: x_heart_full
     21300054: x_heart_half
     21300056: tilemap_28
+    21300058: tilemap_29
+    21300060: tilemap_30
+    21300062: tilemap_31
+    21300064: x_left_leg
+    21300066: x_left_arm
+    21300068: x_gore
+    21300070: x_head
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -358,6 +365,76 @@ TextureImporter:
         x: 73
         y: 25
         width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x_torso
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 10
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x_left_leg
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 3
+        width: 3
+        height: 6
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x_right_leg
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 3
+        width: 3
+        height: 6
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x_right_arm
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 11
+        width: 5
+        height: 3
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x_left_arm
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 6
+        height: 2
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x_gore
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 2
+        height: 2
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x_head
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 10
+        width: 3
         height: 6
       alignment: 0
       pivot: {x: .5, y: .5}

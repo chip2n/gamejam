@@ -15,3 +15,8 @@
 
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
+
+#Build files
+*.exe
+*_Data/
+UnityPlayer_Symbols.pdb

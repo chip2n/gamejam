@@ -121,6 +121,7 @@ MonoBehaviour:
   punchHitbox: {fileID: 100000, guid: dfc63909ba18ac54797c0972ad6e6ef8, type: 2}
   explosionPrefab: {fileID: 100000, guid: 76a81a0a1d1e7274fa5120d18be039e4, type: 2}
   health: 100
+  deathPrefab: {fileID: 100000, guid: f617786489512624fb2ad7a4f3566aa0, type: 2}
   jumpTime: 0
 --- !u!212 &21200000
 SpriteRenderer:

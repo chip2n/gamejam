@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject punchHitbox;
 	public GameObject explosionPrefab;
 	public float health = 100.0f;
+	public GameObject deathPrefab;
 
 	public float jumpTime;
 
@@ -146,5 +147,10 @@ public class PlayerController : MonoBehaviour {
 
 	void RegisterDamage(float damage) {
 		health -= damage;
+		if (health <= 0.0f) {
+			Vector3 deathPos = new Vector3(transform.position.x, transform.position.y, -3);
+			Instantiate (deathPrefab, deathPos, transform.rotation);
+			Destroy (gameObject);
+		}
 	}
 }
