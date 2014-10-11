@@ -47,6 +47,8 @@ public class Level : MonoBehaviour {
 				tile.setPosition(x, y);
 				if(tileIndex == 1) {
 					tile.collider2D.enabled = false;
+				} else {
+					test.layer = 9;
 				}
 				SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
 				sr.sprite = tileSprites[tileIndex];
