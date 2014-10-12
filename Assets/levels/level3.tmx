@@ -10,7 +10,7 @@
  </layer>
  <layer name="background2" width="32" height="32">
   <data encoding="base64" compression="zlib">
-   eJzt0rENwCAMRFEGMC1QEfafMscCBiUKiOg/6boDu3AIAAAAAP4k7l5gMVOSkpXy8I+37z020anKpTSn8+WO3vx+Tzbo4Aw3IzMCJQ==
+   eJzt0kEOABAMRFEHqC1WuP8p1QVIpAj5L5ldM+2izgEAAAD4ib99wGFi0BE0UZMMulZkTdHUwczOG0f7+z/JZAZvaCvoAdQ=
   </data>
  </layer>
  <layer name="foreground" width="32" height="32">
@@ -18,7 +18,7 @@
    <property name="collidable" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztlMsKgCAQRc2gh4H1/1+bLQYG8zGNQUX3wNmpZ3ShMQAAAAD4Gw6+wrVBzVl8/WLa8OzcTbhnvrGvAf1zfwiOwb6wj9YcToJOF7SJM0v395UZrkCduMH7LtHTzkD3JXONuJ+bQfrO1K79M6m5SjNIkbSlWoVP/99fdQfuWgwW
+   eJztVcsOwjAMK0PAAKnw/1/LeogUGSdEGRUcYsmHVV0dO320VigUCoVf4Fb8az6AOD5T+9ne0WH8Gqg7o30n2gyd5IJ145xI5sz7wHnjatRh/SOwssr4zqA7urpf2t/we3HozbVywl7M9GxB92KP/qH5mczUH3l/2nMZ/VNyzb36sn+8PPQei+Q8+rNsPAb0BZ3Mz0J0UAPvAtTL1oB+9ZnX67G7iNUQzVm0WaadjFl3YTZ3re35XeGbcUnQWkv3IfJufpvsLLGsZtLL6gVZpg8e
   </data>
  </layer>
 </map>

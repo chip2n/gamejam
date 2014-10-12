@@ -26,6 +26,8 @@ public class WeaponTextDisplay : MonoBehaviour {
 			if (Time.time - displayTime > currentDisplayDuration && text.enabled) {
 				HideDisplay ();
 			}
+		} else {
+			text.enabled = false;
 		}
 	}
 

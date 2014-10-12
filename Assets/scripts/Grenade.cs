@@ -28,4 +28,10 @@ public class Grenade : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
+
+	void OnTriggerEnter2D(Collider2D coll) {
+		Hitbox hitbox = coll.gameObject.GetComponent<Hitbox> ();
+		Vector3 launchDir = hitbox.GetLaunchVector(transform.position);
+		rigidbody2D.AddForce (launchDir * hitbox.knockback / 35, ForceMode2D.Impulse);
+	}
 }

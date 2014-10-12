@@ -52,10 +52,12 @@ public class MatchManager : MonoBehaviour {
 				EndMatch ();
 				GameObject matchEndObject = Instantiate (matchEndPrefab) as GameObject;
 				matchEndObject.GetComponentInChildren<Text> ().text = "Game Over!\nPlayer " + playersAlive[0].playerNumber + " wins!";
+				matchEndObject.GetComponentInChildren<Text> ().transform.Translate(new Vector3(0,90,0));
 			} else if(playersAlive.Count == 0) {
 				EndMatch ();
 				GameObject matchEndObject = Instantiate (matchEndPrefab) as GameObject;
 				matchEndObject.GetComponentInChildren<Text> ().text = "Game Over!\nIt's a draw!";
+				matchEndObject.GetComponentInChildren<Text> ().transform.Translate(new Vector3(0,90,0));
 			}
 
 
@@ -68,11 +70,6 @@ public class MatchManager : MonoBehaviour {
 
 	void EndMatch() {
 		matchActive = false;
-		Invoke ("QuitApplication", 2);
-	}
-
-	void QuitApplication() {
-		Application.Quit ();
 	}
 
 	void SpawnPlayers() {

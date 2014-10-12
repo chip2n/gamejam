@@ -120,10 +120,10 @@ public class PlayerController : MonoBehaviour {
 			Vector3 grenadeLaunchVector;
 
 			if(transform.rotation.y > 0) {
-				grenadeSpawnPoint = new Vector3 (transform.position.x - 0.5f, transform.position.y, -2);
+				grenadeSpawnPoint = new Vector3 (transform.position.x - 0.5f, transform.position.y, -4);
 				grenadeLaunchVector = new Vector2 (-0.5f, 0.5f) * 800;
 			} else {
-				grenadeSpawnPoint = new Vector3 (transform.position.x + 0.2f, transform.position.y, -2);
+				grenadeSpawnPoint = new Vector3 (transform.position.x + 0.2f, transform.position.y, -4);
 				grenadeLaunchVector = new Vector2 (0.5f, 0.5f) * 800;
 
 			}
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour {
 			grenadeObject.rigidbody2D.AddTorque(torque);
 			//animator.SetBool("punching", true);
 			// Grenade delay
-			Invoke ("OnGrenadeThrowFinished", 0.5f);
+			Invoke ("OnGrenadeThrowFinished", 0.4f);
 		}
 	}
 
@@ -169,6 +169,10 @@ public class PlayerController : MonoBehaviour {
 
 		hitbox.GetComponent<Hitbox>().owner = playerNumber;
 		//hitbox.transform.parent = transform;
+	}
+
+	void OnGrenadeThrowFinishedAnim() {
+		animator.SetBool ("grenade", grenade);
 	}
 
 	void OnGrenadeThrowFinished() {
