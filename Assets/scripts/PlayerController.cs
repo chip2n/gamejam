@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
-		groundRadius = ((BoxCollider2D)collider2D).size.x;
 	}
 	
 	// Update is called once per frame
@@ -39,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		animator.SetBool ("grounded", grounded);
 
-		animator.SetBool ("falling", rigidbody2D.velocity.y < -0.3f);
+		animator.SetBool ("falling", rigidbody2D.velocity.y < -1.0f);
 		animator.SetFloat ("vSpeed", rigidbody2D.velocity.y);
 	}
 
@@ -76,9 +75,10 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	public void ProcessJump(float val) {
+	public void ProcessJump() {
 		if (controllable) {
-			if (val > 0 && grounded && (Time.time - jumpTime) > 1.0f) {
+
+			if (grounded) {
 				Jump ();
 			}
 		}
@@ -103,8 +103,8 @@ public class PlayerController : MonoBehaviour {
 	void Jump() {
 		jumpTime = Time.time;
 		animator.SetBool("jumping", true);
-		rigidbody2D.isKinematic = false;
-		rigidbody2D.AddForce (new Vector3 (0, 50000, 0));
+		//rigidbody2D.isKinematic = false;
+		rigidbody2D.AddForce (new Vector3 (0, 1200, 0), ForceMode2D.Impulse);
 	}
 
 	void Punch() {
@@ -132,6 +132,8 @@ public class PlayerController : MonoBehaviour {
 			int torque = UnityEngine.Random.Range(-100, 100);
 			grenadeObject.rigidbody2D.AddTorque(torque);
 			//animator.SetBool("punching", true);
+			// Grenade delay
+			Invoke ("OnGrenadeThrowFinished", 0.5f);
 		}
 	}
 
@@ -170,6 +172,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnGrenadeThrowFinished() {
+		Debug.Log ("HERE");
 		grenade = false;
 		animator.SetBool ("grenade", grenade);
 	}
