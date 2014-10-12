@@ -5,10 +5,16 @@ using System.IO;
 using System;
 using System.Linq;
 
+public struct TileData {
+	public int id;
+	public bool collidable;
+}
+
 [Serializable]
 public class Level : MonoBehaviour {
 	public List<int> tiles;
-	public List<List<int>> tileLayers;
+	public List<TileData> tilesWithCol;
+	public List<List<TileData>> tileLayers;
 	public string levelSource;
 	public GameObject tilePrefab;
 	public Texture2D tileMap;
@@ -20,7 +26,8 @@ public class Level : MonoBehaviour {
 		LoadSprites();
 	}
 	void Start() {
-		tileLayers = new List<List<int>> ();
+		tileLayers = new List<List<TileData>> ();
+		tilesWithCol = new List<TileData> ();
 		string json_string = File.ReadAllText(levelSource);
 		JSONNode node = JSON.Parse (json_string);
 		JSONArray layers = node["layers"].AsArray;
@@ -28,12 +35,17 @@ public class Level : MonoBehaviour {
 		for(int i = 0; i < layers.Count; i++) {
 			JSONNode layer = layers[i];
 			JSONArray data = layer["data"].AsArray;
+			JSONNode collidableNode = layer["properties"]["collidable"];
+			bool collidable = collidableNode.AsInt == 1;
 			width = layer["width"].AsInt;
 			height = layer["height"].AsInt;
 			
-			List<int> tiles = new List<int> ();
+			List<TileData> tiles = new List<TileData> ();
 			for(int j = 0; j < data.Count; j++) {
-				tiles.Add(data[j].AsInt);
+				TileData d = new TileData();
+				d.id = data[j].AsInt;
+				d.collidable = collidable;
+				tiles.Add(d);
 			}
 
 			tileLayers.Add(tiles);
@@ -45,9 +57,12 @@ public class Level : MonoBehaviour {
 
 	void CreateSprites() {
 		float layerZ = 0.0f;
-		foreach(List<int> tiles in tileLayers) {
+		foreach(List<TileData> tiles in tileLayers) {
 			for(int i = 0; i < tiles.Count; i++) {
-				int tileIndex = tiles[i] - 1;
+				TileData d = tiles[i];
+				int tileIndex = d.id - 1;
+				bool collidable = d.collidable;
+				//int tileIndex = tiles[i] - 1;
 				if(tileIndex > -1) {
 					int x = i % 32;
 					int y = (height - 1) - i / 32;
@@ -55,13 +70,13 @@ public class Level : MonoBehaviour {
 					test.transform.parent = this.transform;
 					Tile tile = test.GetComponent<Tile>();
 					tile.setPosition(x, y, layerZ);
-					if(tileIndex == 3) {
+					if(!collidable) {
 						tile.collider2D.enabled = false;
 					} else {
 						test.layer = 9;
 					}
 					SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
-					sr.sprite = GetSpriteByTileId(tiles[i]);
+					sr.sprite = GetSpriteByTileId(tiles[i].id);
 
 				}
 			}
@@ -70,6 +85,7 @@ public class Level : MonoBehaviour {
 	}
 
 	Sprite GetSpriteByTileId(int id) {
+		Debug.Log (id);
 		foreach (Sprite sp in tileSprites) {
 			if(sp.name == id.ToString()) {
 				return sp;
