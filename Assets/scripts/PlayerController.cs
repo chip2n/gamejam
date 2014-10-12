@@ -121,10 +121,10 @@ public class PlayerController : MonoBehaviour {
 
 			if(transform.rotation.y > 0) {
 				grenadeSpawnPoint = new Vector3 (transform.position.x - 0.5f, transform.position.y, -2);
-				grenadeLaunchVector = new Vector2 (-0.5f, 0.5f) * 1000;
+				grenadeLaunchVector = new Vector2 (-0.5f, 0.5f) * 800;
 			} else {
 				grenadeSpawnPoint = new Vector3 (transform.position.x + 0.2f, transform.position.y, -2);
-				grenadeLaunchVector = new Vector2 (0.5f, 0.5f) * 1000;
+				grenadeLaunchVector = new Vector2 (0.5f, 0.5f) * 800;
 
 			}
 			GameObject grenadeObject = Instantiate (grenadePrefab, grenadeSpawnPoint, Quaternion.identity) as GameObject;
@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour {
 				Destroy (gameObject);
 			} else {
 				Vector3 launchDir = hitbox.GetLaunchVector(transform.position);
-				rigidbody2D.AddForce (launchDir * 500, ForceMode2D.Impulse);
+				rigidbody2D.AddForce (launchDir * hitbox.knockback, ForceMode2D.Impulse);
 			}
 		}
 	}

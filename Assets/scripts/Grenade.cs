@@ -4,7 +4,7 @@ using System;
 
 [Serializable]
 public class Grenade : MonoBehaviour {
-	public float timer = 3.0f;
+	public float timer = 2.0f;
 	public GameObject explosionPrefab;
 	public float damage = 100.0f;
 	 
@@ -23,7 +23,8 @@ public class Grenade : MonoBehaviour {
 			explosion.transform.localScale = explosion.transform.localScale * 3.0f;
 			Hitbox hitbox = explosion.GetComponent<Hitbox>();
 			hitbox.damage = damage;
-			hitbox.SetSize(5, 5);
+			hitbox.knockback = 2000;
+			hitbox.SetSize(2, 2);
 			Destroy (gameObject);
 		}
 	}

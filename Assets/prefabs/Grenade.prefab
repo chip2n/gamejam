@@ -96,8 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3607256442a5079428ee0b3763369767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 3
+  timer: 2
   explosionPrefab: {fileID: 100000, guid: 76a81a0a1d1e7274fa5120d18be039e4, type: 2}
+  damage: 40
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

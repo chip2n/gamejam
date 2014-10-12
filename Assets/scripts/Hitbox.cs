@@ -7,6 +7,7 @@ public class Hitbox : MonoBehaviour {
 	public float damage = 5.0f;
 	public Vector3 launchVector;
 	public int owner = 0;
+	public float knockback = 500.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -21,7 +22,7 @@ public class Hitbox : MonoBehaviour {
 	public Vector3 GetLaunchVector(Vector3 pos) {
 		if(launchVector.x == 0.0f && launchVector.y == 0.0f) {
 			Debug.Log (transform.position + "  " + pos);
-			return Vector3.Normalize(transform.position - pos);
+			return Vector3.Normalize(pos - transform.position);
 		}
 		return launchVector;
 	}
