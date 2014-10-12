@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiles: 00000000
-  levelSource: Assets/levels/level2.json
+  levelSource: Assets/levels/level3.json
   tilePrefab: {fileID: 100000, guid: 2d65c0a8027de65428c031f35f3e7c24, type: 2}
   tileMap: {fileID: 2800000, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
   tileSprites: []

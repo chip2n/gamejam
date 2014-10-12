@@ -8,6 +8,7 @@ using System.Linq;
 [Serializable]
 public class Level : MonoBehaviour {
 	public List<int> tiles;
+	public List<List<int>> tileLayers;
 	public string levelSource;
 	public GameObject tilePrefab;
 	public Texture2D tileMap;
@@ -19,40 +20,52 @@ public class Level : MonoBehaviour {
 		LoadSprites();
 	}
 	void Start() {
+		tileLayers = new List<List<int>> ();
 		string json_string = File.ReadAllText(levelSource);
 		JSONNode node = JSON.Parse (json_string);
-		JSONArray a = node["layers"].AsArray;
-		
-		JSONArray data = a[0]["data"].AsArray;
-		width = a[0]["width"].AsInt;
-		height = a[0]["width"].AsInt;
+		JSONArray layers = node["layers"].AsArray;
 
-		tiles = new List<int> ();
-		for(int i = 0; i < data.Count; i++) {
-			tiles.Add(data[i].AsInt);
+		for(int i = 0; i < layers.Count; i++) {
+			JSONNode layer = layers[i];
+			JSONArray data = layer["data"].AsArray;
+			width = layer["width"].AsInt;
+			height = layer["height"].AsInt;
+			
+			List<int> tiles = new List<int> ();
+			for(int j = 0; j < data.Count; j++) {
+				tiles.Add(data[j].AsInt);
+			}
+
+			tileLayers.Add(tiles);
 		}
+
 
 		CreateSprites();
 	}
 
 	void CreateSprites() {
-		for(int i = 0; i < tiles.Count; i++) {
-			int tileIndex = tiles[i] - 1;
-			if(tileIndex > -1) {
-				int x = i % 32;
-				int y = (height - 1) - i / 32;
-				GameObject test = Instantiate (tilePrefab) as GameObject;
-				test.transform.parent = this.transform;
-				Tile tile = test.GetComponent<Tile>();
-				tile.setPosition(x, y);
-				if(tileIndex == 3) {
-					tile.collider2D.enabled = false;
-				} else {
-					test.layer = 9;
+		float layerZ = 0.0f;
+		foreach(List<int> tiles in tileLayers) {
+			for(int i = 0; i < tiles.Count; i++) {
+				int tileIndex = tiles[i] - 1;
+				if(tileIndex > -1) {
+					int x = i % 32;
+					int y = (height - 1) - i / 32;
+					GameObject test = Instantiate (tilePrefab) as GameObject;
+					test.transform.parent = this.transform;
+					Tile tile = test.GetComponent<Tile>();
+					tile.setPosition(x, y, layerZ);
+					if(tileIndex == 3) {
+						tile.collider2D.enabled = false;
+					} else {
+						test.layer = 9;
+					}
+					SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
+					sr.sprite = GetSpriteByTileId(tiles[i]);
+
 				}
-				SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
-				sr.sprite = GetSpriteByTileId(tiles[i]);
 			}
+			layerZ -= 1.0f;
 		}
 	}
 

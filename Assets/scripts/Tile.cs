@@ -16,7 +16,7 @@ public class Tile : MonoBehaviour {
 	
 	}
 
-	public void setPosition(int x, int y) {
-		transform.position = new Vector3((float) (x * 1.6f), (float) (y * 1.6f), 0.0f);
+	public void setPosition(int x, int y, float z = 0.0f) {
+		transform.position = new Vector3((float) (x * 1.6f), (float) (y * 1.6f), z);
 	}
 }
