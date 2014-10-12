@@ -27,6 +27,10 @@ public class PlayerInput : MonoBehaviour {
 			if(GetWeaponSwitch()) {
 				player.SwitchWeapons();
 			}
+
+			if(Input.GetAxis("Exit") > 0) {
+				Application.Quit();
+			}
 		}
 	}
 
