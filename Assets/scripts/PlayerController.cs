@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 [Serializable]
@@ -7,7 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public float speed = 5.0f;
 	Animator animator;
 	public Transform groundCheck;
-	float groundRadius = 0.2f;
+	public float groundRadius;
 	public LayerMask whatIsGround;
 	bool grounded = false;
 	public bool controllable = true;
@@ -17,7 +18,6 @@ public class PlayerController : MonoBehaviour {
 	public GameObject deathPrefab;
 	public int playerNumber = 1;
 	public GameObject grenadePrefab;
-	WeaponTextDisplay weaponTextDisplay;
 
 	bool grenade = false;
 
@@ -27,20 +27,39 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
-		weaponTextDisplay = GetComponentInChildren<WeaponTextDisplay> ();
+		groundRadius = ((BoxCollider2D)collider2D).size.x;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
+		grounded = IsGrounded ();
 		if (grounded) {
 			animator.SetBool("jumping", false);
 			animator.SetBool("falling", false);
 		}
 		animator.SetBool ("grounded", grounded);
 
-		animator.SetBool ("falling", rigidbody2D.velocity.y < -0.1f);
+		animator.SetBool ("falling", rigidbody2D.velocity.y < -0.3f);
 		animator.SetFloat ("vSpeed", rigidbody2D.velocity.y);
+	}
+
+	bool IsGrounded() {
+		Collider2D[] cols = Physics2D.OverlapCircleAll (groundCheck.position, groundRadius, whatIsGround);
+		List<Collider2D> newCols = new List<Collider2D>();
+
+
+		foreach(Collider2D col in cols) {
+			PlayerController pc = col.gameObject.GetComponent<PlayerController>();
+			if(pc) {
+				if(pc.playerNumber != playerNumber) {
+					newCols.Add(col);
+				}
+			} else {
+				newCols.Add(col);
+			}
+		}
+
+		return newCols.Count > 0;
 	}
 
 	public void ProcessHorizontal(float val) {
@@ -66,10 +85,10 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	public void ProcessFire(float val) {
-		if (val > 0 && grounded) {
-			if(currentWeapon == 0) {
+		if (val > 0) {
+			if(currentWeapon == 0 && grounded) {
 				Punch ();
-			} else {
+			} else if(currentWeapon == 1) {
 				ThrowGrenade();
 			}
 		}
@@ -97,9 +116,19 @@ public class PlayerController : MonoBehaviour {
 		if (!grenade) {
 			grenade = true;
 			animator.SetBool ("grenade", grenade);
-			Vector3 grenadeSpawnPoint = new Vector3 (transform.position.x, transform.position.y, -2);
+			Vector3 grenadeSpawnPoint;
+			Vector3 grenadeLaunchVector;
+
+			if(transform.rotation.y > 0) {
+				grenadeSpawnPoint = new Vector3 (transform.position.x - 0.5f, transform.position.y, -2);
+				grenadeLaunchVector = new Vector2 (-0.5f, 0.5f) * 1000;
+			} else {
+				grenadeSpawnPoint = new Vector3 (transform.position.x + 0.2f, transform.position.y, -2);
+				grenadeLaunchVector = new Vector2 (0.5f, 0.5f) * 1000;
+
+			}
 			GameObject grenadeObject = Instantiate (grenadePrefab, grenadeSpawnPoint, Quaternion.identity) as GameObject;
-			grenadeObject.rigidbody2D.AddForce (new Vector2 (0.5f, 0.5f) * 1000);
+			grenadeObject.rigidbody2D.AddForce (grenadeLaunchVector);
 			int torque = UnityEngine.Random.Range(-100, 100);
 			grenadeObject.rigidbody2D.AddTorque(torque);
 			//animator.SetBool("punching", true);
@@ -148,7 +177,6 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll) {
 		Hitbox hitbox = coll.gameObject.GetComponent<Hitbox> ();
 		if (hitbox && hitbox.owner != playerNumber) {
-			Debug.Log ("Hit a hitbox.");
 			bool dead = RegisterDamage(hitbox.damage);
 			if(dead) {
 				GameObject bodyObj = Instantiate (deathPrefab, transform.position, transform.rotation) as GameObject;
@@ -160,12 +188,9 @@ public class PlayerController : MonoBehaviour {
 				}
 				Destroy (gameObject);
 			} else {
-				Vector3 launchDir = hitbox.GetLaunchVector(coll);
-				Debug.Log ("LAUNCH VECTOR: " + launchDir);
+				Vector3 launchDir = hitbox.GetLaunchVector(transform.position);
 				rigidbody2D.AddForce (launchDir * 500, ForceMode2D.Impulse);
 			}
-		} else {
-			Debug.Log ("NOPE");
 		}
 	}
 

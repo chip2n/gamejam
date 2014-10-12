@@ -18,10 +18,10 @@ public class Hitbox : MonoBehaviour {
 	
 	}
 
-	public Vector3 GetLaunchVector(Collider2D coll) {
+	public Vector3 GetLaunchVector(Vector3 pos) {
 		if(launchVector.x == 0.0f && launchVector.y == 0.0f) {
-			Debug.Log("YEY " + transform.position + " " + coll.bounds.center);
-			return Vector3.Normalize(transform.position - coll.bounds.center);
+			Debug.Log (transform.position + "  " + pos);
+			return Vector3.Normalize(transform.position - pos);
 		}
 		return launchVector;
 	}

@@ -37,7 +37,6 @@ public class Level : MonoBehaviour {
 
 	void CreateSprites() {
 		for(int i = 0; i < tiles.Count; i++) {
-			//Debug.Log (tiles[i]);
 			int tileIndex = tiles[i] - 1;
 			if(tileIndex > -1) {
 				int x = i % 32;
@@ -53,7 +52,6 @@ public class Level : MonoBehaviour {
 				}
 				SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
 				sr.sprite = GetSpriteByTileId(tiles[i]);
-				Debug.Log ("SPRITE NAME: " + tileSprites[tileIndex].name);
 			}
 		}
 	}
