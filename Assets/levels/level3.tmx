@@ -10,7 +10,7 @@
  </layer>
  <layer name="background2" width="32" height="32">
   <data encoding="base64" compression="zlib">
-   eJztzrENACAMwLAeQP9/F/EA3Sgge82SCAAA4CfZPXDY6B4o3P637B6z6LxjAs2oAEs=
+   eJzt0rENwCAMRFEGMC1QEfafMscCBiUKiOg/6boDu3AIAAAAAP4k7l5gMVOSkpXy8I+37z020anKpTSn8+WO3vx+Tzbo4Aw3IzMCJQ==
   </data>
  </layer>
  <layer name="foreground" width="32" height="32">

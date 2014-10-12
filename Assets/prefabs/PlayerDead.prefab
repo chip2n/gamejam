@@ -346,7 +346,7 @@ PolygonCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e09538358ce335d4791cac7e6c14e008, type: 2}
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
@@ -369,7 +369,7 @@ PolygonCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e09538358ce335d4791cac7e6c14e008, type: 2}
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
@@ -388,7 +388,7 @@ PolygonCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e09538358ce335d4791cac7e6c14e008, type: 2}
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
@@ -407,7 +407,7 @@ PolygonCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e09538358ce335d4791cac7e6c14e008, type: 2}
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
@@ -424,7 +424,7 @@ PolygonCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e09538358ce335d4791cac7e6c14e008, type: 2}
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
@@ -443,7 +443,7 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e09538358ce335d4791cac7e6c14e008, type: 2}
   m_IsTrigger: 0
   m_Size: {x: .600000024, y: .200000003}
   m_Center: {x: 0, y: 0}
