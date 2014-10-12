@@ -51,13 +51,12 @@ public class MatchManager : MonoBehaviour {
 			if(playersAlive.Count == 1) {
 				EndMatch ();
 				GameObject matchEndObject = Instantiate (matchEndPrefab) as GameObject;
-				matchEndObject.GetComponentInChildren<Text> ().text = "Game Over!\nPlayer " + playersAlive[0].playerNumber + " wins!";
-				matchEndObject.GetComponentInChildren<Text> ().transform.Translate(new Vector3(0,90,0));
+				matchEndObject.transform.FindChild("WinText").GetComponentInChildren<Text> ().text = "Player " + playersAlive[0].playerNumber + " wins!";
+				//matchEndObject.GetComponentInChildren<Text> ().text = "Game Over!\nPlayer " + playersAlive[0].playerNumber + " wins!";
 			} else if(playersAlive.Count == 0) {
 				EndMatch ();
 				GameObject matchEndObject = Instantiate (matchEndPrefab) as GameObject;
-				matchEndObject.GetComponentInChildren<Text> ().text = "Game Over!\nIt's a draw!";
-				matchEndObject.GetComponentInChildren<Text> ().transform.Translate(new Vector3(0,90,0));
+				matchEndObject.transform.FindChild("WinText").GetComponentInChildren<Text> ().text = "It's a draw!";
 			}
 
 
