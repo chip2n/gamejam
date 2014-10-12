@@ -9,6 +9,7 @@ public class MatchManager : MonoBehaviour {
 	public GameObject playerPrefab;
 	public GameObject healthBarPrefab;
 	public GameObject matchEndPrefab;
+	public GameObject weaponDisplayPrefab;
 
 	public int nrOfPlayers = 2;
 	public List<PlayerController> players;
@@ -31,6 +32,7 @@ public class MatchManager : MonoBehaviour {
 
 		SpawnPlayers ();
 		CreateHealthBars ();
+		CreateWeaponDisplays ();
 		StartMatch ();
 	}
 	
@@ -89,6 +91,14 @@ public class MatchManager : MonoBehaviour {
 			healthBar.position = nextBarPos;
 			// TODO: Add support for more bars
 			nextBarPos = "right";
+		}
+	}
+
+	void CreateWeaponDisplays() {
+		foreach(PlayerController player in players) {
+			GameObject weaponDisplayObject = Instantiate(weaponDisplayPrefab) as GameObject;
+			WeaponTextDisplay weaponDisplay = weaponDisplayObject.GetComponent<WeaponTextDisplay>();
+			weaponDisplay.targetPlayer = player;
 		}
 	}
 }

@@ -43,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.88950014, z: -1}
+  m_LocalPosition: {x: -698.039917, y: -29.1221657, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -119,7 +119,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   controllable: 1
-  punchHitbox: {fileID: 100000, guid: dfc63909ba18ac54797c0972ad6e6ef8, type: 2}
+  punchHitbox: {fileID: 0}
   explosionPrefab: {fileID: 100000, guid: 76a81a0a1d1e7274fa5120d18be039e4, type: 2}
   health: 100
   deathPrefab: {fileID: 100012, guid: 570d88a754b5c5144ac513db7537b089, type: 2}

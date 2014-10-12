@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject deathPrefab;
 	public int playerNumber = 1;
 	public GameObject grenadePrefab;
+	WeaponTextDisplay weaponTextDisplay;
 
 	bool grenade = false;
 
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
+		weaponTextDisplay = GetComponentInChildren<WeaponTextDisplay> ();
 	}
 	
 	// Update is called once per frame
@@ -104,9 +106,8 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void SwitchWeapons() {
+	public void SwitchWeapons() {
 		currentWeapon = (currentWeapon + 1) % 2;
-		Debug.Log("Switched weapons to " + currentWeapon);
 	}
 
 	void OnFinishedAttack() {
@@ -161,7 +162,7 @@ public class PlayerController : MonoBehaviour {
 			} else {
 				Vector3 launchDir = hitbox.GetLaunchVector(coll);
 				Debug.Log ("LAUNCH VECTOR: " + launchDir);
-				rigidbody2D.AddForce (launchDir * 50000);
+				rigidbody2D.AddForce (launchDir * 500, ForceMode2D.Impulse);
 			}
 		} else {
 			Debug.Log ("NOPE");

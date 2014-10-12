@@ -413,7 +413,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7178f1a7f22deef458800694a37f88c3, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7178f1a7f22deef458800694a37f88c3, type: 2}
@@ -499,6 +499,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 100000, guid: b62b8eab22c430343a8791f54d86d55b, type: 2}
   healthBarPrefab: {fileID: 100004, guid: 338e2fb1c287a1244823439f71e8e8e3, type: 2}
   matchEndPrefab: {fileID: 100002, guid: c9fa8dc3cc9eca14d93d502571da8840, type: 2}
+  weaponDisplayPrefab: {fileID: 100002, guid: 4b72db422025baa47b64719d7c7abb4c, type: 2}
   nrOfPlayers: 2
   players: []
 --- !u!4 &1616876996
