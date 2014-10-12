@@ -10,6 +10,7 @@ public class MatchManager : MonoBehaviour {
 	public GameObject healthBarPrefab;
 	public GameObject matchEndPrefab;
 	public GameObject weaponDisplayPrefab;
+	public GameObject playerIndicatorPrefab;
 
 	public int nrOfPlayers = 2;
 	public List<PlayerController> players;
@@ -33,6 +34,7 @@ public class MatchManager : MonoBehaviour {
 		SpawnPlayers ();
 		CreateHealthBars ();
 		CreateWeaponDisplays ();
+		CreatePlayerIndicators ();
 		StartMatch ();
 	}
 	
@@ -99,6 +101,14 @@ public class MatchManager : MonoBehaviour {
 			GameObject weaponDisplayObject = Instantiate(weaponDisplayPrefab) as GameObject;
 			WeaponTextDisplay weaponDisplay = weaponDisplayObject.GetComponent<WeaponTextDisplay>();
 			weaponDisplay.targetPlayer = player;
+		}
+	}
+
+	void CreatePlayerIndicators() {
+		foreach (PlayerController player in players) {
+			GameObject indicatorObject = Instantiate (playerIndicatorPrefab) as GameObject;
+			PlayerIndicator indicator = indicatorObject.GetComponent<PlayerIndicator> ();
+			indicator.targetPlayer = player;
 		}
 	}
 }

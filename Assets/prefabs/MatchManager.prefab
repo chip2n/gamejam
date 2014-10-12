@@ -43,6 +43,8 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 100004, guid: 338e2fb1c287a1244823439f71e8e8e3, type: 2}
   matchEndPrefab: {fileID: 100002, guid: c9fa8dc3cc9eca14d93d502571da8840, type: 2}
   weaponDisplayPrefab: {fileID: 100002, guid: 4b72db422025baa47b64719d7c7abb4c, type: 2}
+  playerIndicatorPrefab: {fileID: 100002, guid: 9f95a04c89c295248b22ff21b3b88b76,
+    type: 2}
   nrOfPlayers: 2
   players: []
 --- !u!1001 &100100000

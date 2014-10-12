@@ -172,7 +172,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnGrenadeThrowFinished() {
-		Debug.Log ("HERE");
 		grenade = false;
 		animator.SetBool ("grenade", grenade);
 	}

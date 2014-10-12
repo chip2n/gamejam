@@ -53,6 +53,8 @@ TextureImporter:
     21300096: tilemap_48
     21300098: 12
     21300100: 13
+    21300102: p1_indicator
+    21300104: p2_indicator
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -601,6 +603,26 @@ TextureImporter:
         y: 96
         width: 16
         height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: p1_indicator
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 18
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: p2_indicator
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 18
+        width: 7
+        height: 8
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -85,7 +85,6 @@ public class Level : MonoBehaviour {
 	}
 
 	Sprite GetSpriteByTileId(int id) {
-		Debug.Log (id);
 		foreach (Sprite sp in tileSprites) {
 			if(sp.name == id.ToString()) {
 				return sp;
@@ -97,16 +96,6 @@ public class Level : MonoBehaviour {
 
 
 	void LoadSprites() {
-		/*
-		string spriteSheet = AssetDatabase.GetAssetPath(tileMap);
-		Sprite[] sprites = AssetDatabase.LoadAllAssetsAtPath( spriteSheet )
-			.OfType<Sprite>().ToArray();
-
-		foreach (Sprite s in sprites) {
-			tileSprites.Add(s);
-		}
-		*/
-
 		Sprite[] sprites = Resources.LoadAll<Sprite> (@"sprites/tilemap");
 		foreach (Sprite s in sprites) {
 			tileSprites.Add(s);

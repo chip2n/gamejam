@@ -18,9 +18,6 @@ public class BodyPart : MonoBehaviour {
 		Hitbox hitbox = coll.gameObject.GetComponent<Hitbox> ();
 		if (hitbox) {
 			Launch (hitbox.GetLaunchVector(transform.position));
-			Debug.Log ("YEY " + hitbox.GetLaunchVector(transform.position));
-		} else {
-			Debug.Log ("NOPE");
 		}
 	}
 
