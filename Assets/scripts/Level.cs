@@ -69,12 +69,8 @@ public class Level : MonoBehaviour {
 					GameObject test = Instantiate (tilePrefab) as GameObject;
 					test.transform.parent = this.transform;
 					Tile tile = test.GetComponent<Tile>();
-					tile.setPosition(x, y, layerZ);
-					if(!collidable) {
-						tile.collider2D.enabled = false;
-					} else {
-						test.layer = 9;
-					}
+					tile.SetPosition(x, y, layerZ);
+					tile.SetCollidable(collidable);
 					SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
 					sr.sprite = GetSpriteByTileId(tiles[i].id);
 
