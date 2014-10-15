@@ -15,6 +15,8 @@ public class MatchManager : MonoBehaviour {
 	public int nrOfPlayers = 2;
 	public List<PlayerController> players;
 
+	public bool spawnPlayers = true;
+
 	bool matchActive = false;
 
 
@@ -31,7 +33,9 @@ public class MatchManager : MonoBehaviour {
 
 		spawnPositions = spawnPositions.OrderBy (o=>o.x).ToList();
 
-		SpawnPlayers ();
+		if (spawnPlayers) {
+			SpawnPlayers ();
+		}
 		CreateHealthBars ();
 		CreateWeaponDisplays ();
 		CreatePlayerIndicators ();

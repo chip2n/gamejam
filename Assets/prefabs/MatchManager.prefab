@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2a8de739f8c3448824f75eb0bc2abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 100000, guid: b62b8eab22c430343a8791f54d86d55b, type: 2}
+  playerPrefab: {fileID: 100002, guid: 3f3af8c88283b4b4096a6a573102bdac, type: 2}
   healthBarPrefab: {fileID: 100004, guid: 338e2fb1c287a1244823439f71e8e8e3, type: 2}
   matchEndPrefab: {fileID: 100002, guid: c9fa8dc3cc9eca14d93d502571da8840, type: 2}
   weaponDisplayPrefab: {fileID: 100002, guid: 4b72db422025baa47b64719d7c7abb4c, type: 2}

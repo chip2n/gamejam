@@ -16,6 +16,8 @@ public class PlayerInput : MonoBehaviour {
 		if (player.controllable) {
 			float val = GetHorizontal();
 			player.ProcessHorizontal(val);
+			float val2 = GetVertical();
+			player.ProcessVertical(val2);
 
 			if(GetJump()) {
 				player.ProcessJump();
@@ -36,14 +38,19 @@ public class PlayerInput : MonoBehaviour {
 
 	float GetHorizontal() {
 		string axisName = "Horizontal" + player.playerNumber;
-		return Input.GetAxis (axisName);
+		return Input.GetAxisRaw (axisName);
+	}
+
+	float GetVertical() {
+		string axisName = "Vertical" + player.playerNumber;
+		return Input.GetAxisRaw (axisName);
 	}
 
 	bool GetJump() {
 		string axisName = "Jump" + player.playerNumber;
 		return Input.GetButtonDown (axisName);
 	}
-
+	//TODO: use GetAxisRaw
 	float GetFire() {
 		string axisName = "Fire" + player.playerNumber;
 		return Input.GetAxis (axisName);

@@ -12,10 +12,10 @@ public class Tile : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		leftCollider = transform.FindChild ("left").GetComponent<EdgeCollider2D>();
-		rightCollider = transform.FindChild ("right").GetComponent<EdgeCollider2D>();
-		topCollider = transform.FindChild ("top").GetComponent<EdgeCollider2D>();
-		bottomCollider = transform.FindChild ("bottom").GetComponent<EdgeCollider2D>();
+		//leftCollider = transform.FindChild ("left").GetComponent<EdgeCollider2D>();
+		//rightCollider = transform.FindChild ("right").GetComponent<EdgeCollider2D>();
+		//topCollider = transform.FindChild ("top").GetComponent<EdgeCollider2D>();
+		//bottomCollider = transform.FindChild ("bottom").GetComponent<EdgeCollider2D>();
 	}
 
 	// Update is called once per frame
@@ -29,11 +29,11 @@ public class Tile : MonoBehaviour {
 
 	public void SetCollidable(bool val) {
 		collidable = val;
-		//collider2D.enabled = val;
-		leftCollider.enabled = val;
-		rightCollider.enabled = val;
-		topCollider.enabled = val;
-		bottomCollider.enabled = val;
+		GetComponent<BoxCollider2D> ().enabled = val;
+		//leftCollider.enabled = val;
+		//rightCollider.enabled = val;
+		//topCollider.enabled = val;
+		//bottomCollider.enabled = val;
 		if (val) {
 			SetLayer(9);
 		} else {
@@ -43,9 +43,9 @@ public class Tile : MonoBehaviour {
 
 	public void SetLayer(int layerNr) {;
 		gameObject.layer = layerNr;
-		leftCollider.gameObject.layer = layerNr;
-		rightCollider.gameObject.layer = layerNr;
-		topCollider.gameObject.layer = layerNr;
-		bottomCollider.gameObject.layer = layerNr;
+		//leftCollider.gameObject.layer = layerNr;
+		//rightCollider.gameObject.layer = layerNr;
+		//topCollider.gameObject.layer = layerNr;
+		//bottomCollider.gameObject.layer = layerNr;
 	}
 }
