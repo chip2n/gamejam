@@ -17,18 +17,14 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
-    - time: -.0166666675
-      value: {fileID: 21300038, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
+    - time: 0
+      value: {fileID: 21300060, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
     - time: .0166666675
-      value: {fileID: 21300038, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
-    - time: .0500000007
-      value: {fileID: 21300040, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
-    - time: .0833333358
-      value: {fileID: 21300042, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
-    - time: .166666672
-      value: {fileID: 21300040, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
-    - time: .183333337
-      value: {fileID: 21300038, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
+      value: {fileID: 21300062, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
+    - time: .0333333351
+      value: {fileID: 21300146, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
+    - time: .116666667
+      value: {fileID: 21300146, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -47,16 +43,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300038, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
-    - {fileID: 21300038, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
-    - {fileID: 21300040, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
-    - {fileID: 21300042, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
-    - {fileID: 21300040, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
-    - {fileID: 21300038, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
+    - {fileID: 21300060, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
+    - {fileID: 21300062, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
+    - {fileID: 21300146, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
+    - {fileID: 21300146, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: .200000003
+    m_StopTime: .13333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -73,14 +67,14 @@ AnimationClip:
   m_EditorCurves: []
   m_EulerEditorCurves: []
   m_Events:
-  - time: .0833333358
+  - time: .0333333351
     functionName: OnCreateExplosion
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: .200000003
+  - time: .116666667
     functionName: OnFinishedAttack
     data: 
     objectReferenceParameter: {fileID: 0}

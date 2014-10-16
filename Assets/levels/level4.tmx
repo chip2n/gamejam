@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="level_tiles" tilewidth="16" tileheight="16">
+  <image source="../Resources/sprites/level_tiles.png" width="256" height="256"/>
+  <tile id="11">
+   <properties>
+    <property name="class" value="lava"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="class" value="lava"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="class" value="lava"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="class" value="lava"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="class" value="lava"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="background" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztw8EJAAAMA6F7ZP+Zu0dRcNVUVVXV1w83gBAB
+  </data>
+ </layer>
+ <layer name="background2" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzrEJACAMRNG0mhXcf06zgRYBQd6D31x1EQAAAPxgVLPK10carcuNsw2VsABX
+  </data>
+ </layer>
+ <layer name="level" width="32" height="32">
+  <properties>
+   <property name="collidable" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzzEKACEUA9Gvtuqy2nr/c25qy7CF4DyYNpAIAAAAAMANslFRVTXV1aOSuTWMplpbr7nl9sePE/oA8QsHFw==
+  </data>
+ </layer>
+</map>

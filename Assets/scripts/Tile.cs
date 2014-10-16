@@ -48,4 +48,5 @@ public class Tile : MonoBehaviour {
 		//topCollider.gameObject.layer = layerNr;
 		//bottomCollider.gameObject.layer = layerNr;
 	}
+
 }

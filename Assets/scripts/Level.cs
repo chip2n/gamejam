@@ -8,6 +8,7 @@ using System.Linq;
 public struct TileData {
 	public int id;
 	public bool collidable;
+	public string cls;
 }
 
 [Serializable]
@@ -31,6 +32,8 @@ public class Level : MonoBehaviour {
 		string json_string = File.ReadAllText(levelSource);
 		JSONNode node = JSON.Parse (json_string);
 		JSONArray layers = node["layers"].AsArray;
+		JSONArray tilesets = node ["tilesets"].AsArray;
+		JSONNode tileproperties = tilesets [0] ["tileproperties"];
 
 		for(int i = 0; i < layers.Count; i++) {
 			JSONNode layer = layers[i];
@@ -43,8 +46,12 @@ public class Level : MonoBehaviour {
 			List<TileData> tiles = new List<TileData> ();
 			for(int j = 0; j < data.Count; j++) {
 				TileData d = new TileData();
-				d.id = data[j].AsInt;
+				d.id = data[j].AsInt - 1;
 				d.collidable = collidable;
+				//Debug.Log (tileproperties[data[j].AsInt]["class"].ToString());
+				if (tileproperties[d.id.ToString()] != null) {
+					d.cls = tileproperties[d.id.ToString ()]["class"];
+				}
 				tiles.Add(d);
 			}
 
@@ -60,7 +67,7 @@ public class Level : MonoBehaviour {
 		foreach(List<TileData> tiles in tileLayers) {
 			for(int i = 0; i < tiles.Count; i++) {
 				TileData d = tiles[i];
-				int tileIndex = d.id - 1;
+				int tileIndex = d.id;
 				bool collidable = d.collidable;
 				//int tileIndex = tiles[i] - 1;
 				if(tileIndex > -1) {
@@ -68,7 +75,13 @@ public class Level : MonoBehaviour {
 					int y = (height - 1) - i / 32;
 					GameObject test = Instantiate (tilePrefab) as GameObject;
 					test.transform.parent = this.transform;
-					Tile tile = test.GetComponent<Tile>();
+					Tile tile;
+					if(d.cls == "lava") {
+						tile = test.AddComponent<LavaTile>();
+					} else {
+						tile = test.AddComponent<Tile>();
+					}
+
 					tile.SetPosition(x, y, layerZ);
 					tile.SetCollidable(collidable);
 					SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
@@ -92,11 +105,10 @@ public class Level : MonoBehaviour {
 
 
 	void LoadSprites() {
-		Sprite[] sprites = Resources.LoadAll<Sprite> (@"sprites/tilemap");
+		Sprite[] sprites = Resources.LoadAll<Sprite> (@"sprites/level_tiles");
 		foreach (Sprite s in sprites) {
 			tileSprites.Add(s);
 		}
-		tileSprites = tileSprites.OrderBy (o => o.name).ToList();
-
+		tileSprites = tileSprites.OrderBy (o => Convert.ToInt32(o.name)).ToList();
 	}
 }

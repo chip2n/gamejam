@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPlayer: {fileID: 0}
   indicatorSprites:
-  - {fileID: 21300102, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
-  - {fileID: 21300104, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
+  - {fileID: 21300162, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
+  - {fileID: 21300164, guid: 252ad44d4742b2442bd02994cfabda08, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
