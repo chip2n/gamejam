@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject deathPrefab;
 	public int playerNumber = 1;
 	public GameObject grenadePrefab;
+	public GameObject burningStatusPrefab;
 
 	float knockbackTime;
 
@@ -294,20 +295,10 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll) {
 		Hitbox hitbox = coll.gameObject.GetComponent<Hitbox> ();
 		if (hitbox && hitbox.owner != playerNumber) {
-			bool dead = RegisterDamage(hitbox.damage);
-			if(dead) {
-				GameObject bodyObj = Instantiate (deathPrefab, transform.position, transform.rotation) as GameObject;
-				foreach(Transform t in bodyObj.transform) {
-					BodyPart bp = t.GetComponent<BodyPart>();
-					if(bp) {
-						bp.Launch(bp.transform.position - coll.bounds.center);
-					}
-				}
-				Destroy (gameObject);
-			} else {
+			bool dead = RegisterDamage(hitbox.damage, true, coll.bounds.center);
+			if(!dead) {
 				Vector3 launchDir = hitbox.GetLaunchVector(transform.position);
 				Launch(launchDir, hitbox.knockback);
-
 			}
 		}
 	}
@@ -319,8 +310,23 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	bool RegisterDamage(float damage) {
+		return RegisterDamage (damage, false, Vector3.zero);
+	}
+
+	bool RegisterDamage(float damage, bool createBodyparts, Vector3 impactPoint) {
 		health -= damage;
 		if (health <= 0.0f) {
+			if(createBodyparts) {
+				Debug.Log ("WOUIE");
+				GameObject bodyObj = Instantiate (deathPrefab, transform.position, transform.rotation) as GameObject;
+				foreach(Transform t in bodyObj.transform) {
+					BodyPart bp = t.GetComponent<BodyPart>();
+					if(bp) {
+						bp.Launch(bp.transform.position - impactPoint);
+					}
+				}
+			}
+			Destroy (gameObject);
 			return true;
 		}
 

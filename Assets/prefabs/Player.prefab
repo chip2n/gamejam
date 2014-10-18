@@ -132,6 +132,7 @@ MonoBehaviour:
   deathPrefab: {fileID: 100012, guid: 570d88a754b5c5144ac513db7537b089, type: 2}
   playerNumber: 1
   grenadePrefab: {fileID: 100002, guid: ca6b2349a5da15a4686bd6604f26a71a, type: 2}
+  burningStatusPrefab: {fileID: 100000, guid: c97caec9917bcfd4081edb89a9153ca2, type: 2}
   jumpTime: 0
   currentWeapon: 0
 --- !u!114 &11400002

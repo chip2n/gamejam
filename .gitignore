@@ -21,3 +21,8 @@ sysinfo.txt
 *.apk
 *_Data/
 UnityPlayer_Symbols.pdb
+
+#Misc
+*.swp
+*.swo
+*.un~

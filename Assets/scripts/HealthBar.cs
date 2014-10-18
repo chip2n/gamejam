@@ -43,12 +43,12 @@ public class HealthBar : MonoBehaviour {
 			fullHeart.transform.parent = canvas;
 			if(position == "right") {
 				fullHeart.transform.position = new Vector3(-32, 16, 0);
-				fullHeart.transform.Translate(new Vector3(i*-10,0,0));
+				fullHeart.transform.Translate(new Vector3(i*-20,0,0));
 				((RectTransform)fullHeart.transform).anchorMin = new Vector2(1, 0);
 				((RectTransform)fullHeart.transform).anchorMax = new Vector2(1, 0);
 			} else {
 				fullHeart.transform.position = new Vector3(32, 16, 0);
-				fullHeart.transform.Translate(new Vector3(i*10,0,0));
+				fullHeart.transform.Translate(new Vector3(i*20,0,0));
 				((RectTransform)fullHeart.transform).anchorMin = new Vector2(0, 0);
 				((RectTransform)fullHeart.transform).anchorMax = new Vector2(0, 0);
 			}
@@ -57,7 +57,18 @@ public class HealthBar : MonoBehaviour {
 		for (int i = 0; i < nrOfHalfHearts; i++) {
 			GameObject halfHeart = Instantiate(halfHeartPrefab) as GameObject;
 			halfHeart.transform.parent = canvas;
-			halfHeart.transform.Translate(new Vector3((i + nrOfFullHearts)*10,0,0));
+			if(position == "right") {
+				halfHeart.transform.position = new Vector3(-32, 16, 0);
+				halfHeart.transform.Translate(new Vector3((i + nrOfFullHearts)*-20,0,0));
+				halfHeart.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+				((RectTransform)halfHeart.transform).anchorMin = new Vector2(1, 0);
+				((RectTransform)halfHeart.transform).anchorMax = new Vector2(1, 0);
+			} else {
+				halfHeart.transform.position = new Vector3(32, 16, 0);
+				halfHeart.transform.Translate(new Vector3((i + nrOfFullHearts)*20,0,0));
+				((RectTransform)halfHeart.transform).anchorMin = new Vector2(0, 0);
+				((RectTransform)halfHeart.transform).anchorMax = new Vector2(0, 0);
+			}
 		}
 
 		lastHealth = player.health;
