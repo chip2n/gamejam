@@ -5,7 +5,8 @@ public class LavaTile : Tile {
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<BoxCollider2D> ().isTrigger = true;
+		BoxCollider2D col = GetComponent<BoxCollider2D> ();
+		col.isTrigger = true;
 	}
 	
 	// Update is called once per frame

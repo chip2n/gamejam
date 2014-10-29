@@ -41,13 +41,15 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		grounded = IsGrounded ();
 		if (grounded) {
-			jumpsLeft = 2;
-			animator.SetBool("jumping", false);
-			animator.SetBool("falling", false);
-		}
+						jumpsLeft = 2;
+						animator.SetBool ("jumping", false);
+						animator.SetBool ("falling", false);
+				} else {
+			animator.SetBool ("falling", rigidbody2D.velocity.y < -1.0f);
+				}
 		animator.SetBool ("grounded", grounded);
 
-		animator.SetBool ("falling", rigidbody2D.velocity.y < -1.0f);
+
 		animator.SetFloat ("vSpeed", rigidbody2D.velocity.y);
 	}
 
@@ -68,32 +70,19 @@ public class PlayerController : MonoBehaviour {
 		if (Math.Abs (rigidbody2D.velocity.x) < 1.0f) {
 			lastImpulseDir = new Vector2(0,0);
 		}
-
-
-
-
-
+		
 
 		if (Math.Abs (rigidbody2D.velocity.x) < speed) {
-						if (grounded) {
-
-								rigidbody2D.AddForce (new Vector2 (movementDir.x, 0.0f) * 4000);
-								if (lastImpulseDir.x != movementDir.x && movementDir.x != 0.0f) {
-										lastImpulseDir = new Vector2 (movementDir.x, 0);
-										rigidbody2D.AddForce (new Vector2 (movementDir.x, 0.0f) * 300, ForceMode2D.Impulse);
-								}
-						} else {
-
-								rigidbody2D.AddForce (new Vector2 (movementDir.x, 0.0f) * 2000);
-								//rigidbody2D.AddForce (new Vector2(0.0f, movementDir.y) * 50, ForceMode2D.Impulse);
-						}
+			if (grounded) {
+				rigidbody2D.AddForce (new Vector2 (movementDir.x, 0.0f) * 4000);
+				if (lastImpulseDir.x != movementDir.x && movementDir.x != 0.0f) {
+					lastImpulseDir = new Vector2 (movementDir.x, 0);
+					rigidbody2D.AddForce (new Vector2 (movementDir.x, 0.0f) * 300, ForceMode2D.Impulse);
 				}
-
-		/*
-		if(Math.Abs (rigidbody2D.velocity.x) > speed) {
-			rigidbody2D.velocity = new Vector2(movementDir.x * speed, rigidbody2D.velocity.y);
+			} else {
+				rigidbody2D.AddForce (new Vector2 (movementDir.x, 0.0f) * 2000);
+			}
 		}
-		*/
 
 		if (movementDir.y == -1.0f) {
 			if(rigidbody2D.velocity.y < -fallSpeed - 3.0f) {

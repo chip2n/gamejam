@@ -78,12 +78,13 @@ public class Level : MonoBehaviour {
 					Tile tile;
 					if(d.cls == "lava") {
 						tile = test.AddComponent<LavaTile>();
+						tile.SetCollidable(true);
 					} else {
 						tile = test.AddComponent<Tile>();
+						tile.SetCollidable(collidable);
 					}
 
 					tile.SetPosition(x, y, layerZ);
-					tile.SetCollidable(collidable);
 					SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
 					sr.sprite = GetSpriteByTileId(tiles[i].id);
 
